@@ -1,0 +1,173 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  * {
+    border-color: theme('colors.line');
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-base-800 text-ink font-sans antialiased;
+    overflow-x: hidden;
+  }
+
+  /* Selection */
+  ::selection {
+    background: rgba(45, 212, 191, 0.25);
+    color: #ECFDF7;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #06080C;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1A2330;
+    border-radius: 999px;
+    border: 2px solid #06080C;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2a3543;
+  }
+}
+
+@layer components {
+  /* Section shell */
+  .section {
+    @apply relative mx-auto w-full max-w-[1180px] px-6 sm:px-8;
+  }
+
+  /* Eyebrow / kicker label */
+  .kicker {
+    @apply inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.25em] text-accent-300;
+  }
+
+  .kicker::before {
+    content: '';
+    @apply h-px w-6 bg-accent/50;
+  }
+
+  /* Glass card */
+  .glass {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.012));
+    @apply rounded-2xl border border-line backdrop-blur-sm;
+  }
+
+  .glass-hover {
+    transition: border-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+  }
+  .glass-hover:hover {
+    @apply border-accent/30 shadow-glow-soft;
+    transform: translateY(-3px);
+  }
+
+  /* Gradient text */
+  .text-gradient {
+    background: linear-gradient(180deg, #ffffff 0%, #cfe9e3 60%, #6ee7d6 130%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .text-accent-gradient {
+    background: linear-gradient(90deg, #5EEAD4, #2DD4BF 45%, #5B9DFF);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Mono chip */
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-md border border-line bg-base-700/60 px-2.5 py-1 font-mono text-[12px] text-ink-soft;
+  }
+
+  /* Animated underline link */
+  .link-underline {
+    @apply relative inline-block text-ink-soft transition-colors duration-300 hover:text-ink;
+  }
+  .link-underline::after {
+    content: '';
+    @apply absolute -bottom-0.5 left-0 h-px w-0 bg-accent transition-all duration-300;
+  }
+  .link-underline:hover::after {
+    @apply w-full;
+  }
+
+  /* Button */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition-all duration-300;
+  }
+  .btn-primary {
+    @apply bg-accent text-base-900 hover:bg-accent-300;
+    box-shadow: 0 0 0 1px rgba(45, 212, 191, 0.3), 0 12px 30px -12px rgba(45, 212, 191, 0.7);
+  }
+  .btn-primary:hover {
+    box-shadow: 0 0 0 1px rgba(45, 212, 191, 0.5), 0 16px 40px -10px rgba(45, 212, 191, 0.8);
+    transform: translateY(-2px);
+  }
+  .btn-ghost {
+    @apply border border-line bg-white/[0.02] text-ink hover:border-accent/40 hover:bg-white/[0.04];
+  }
+}
+
+@layer utilities {
+  .grid-bg {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  .grid-bg-mask {
+    -webkit-mask-image: radial-gradient(ellipse 75% 60% at 50% 0%, #000 35%, transparent 78%);
+    mask-image: radial-gradient(ellipse 75% 60% at 50% 0%, #000 35%, transparent 78%);
+  }
+
+  .dotted-bg {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Hide scrollbar but keep scroll */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
