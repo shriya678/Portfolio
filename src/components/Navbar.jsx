@@ -33,8 +33,19 @@ export default function Navbar() {
   }, [])
 
   const go = (id) => {
+    const el = document.getElementById(id)
+    if (!el) return
+    // If the mobile menu is open, close it first and wait for the collapse
+    // animation to finish — scrolling during the reflow makes mobile browsers
+    // cancel the smooth scroll. On desktop (menu closed) scroll immediately.
+    const wasOpen = open
     setOpen(false)
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+    const scroll = () => el.scrollIntoView({ behavior: 'smooth' })
+    if (wasOpen) {
+      setTimeout(scroll, 360)
+    } else {
+      scroll()
+    }
   }
 
   return (
