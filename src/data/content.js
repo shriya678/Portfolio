@@ -10,8 +10,8 @@ export const profile = {
   location: 'Bilaspur, India · Remote',
   email: 'guptashriya035@gmail.com',
   phone: '+91 83191-81409',
-  linkedin: 'https://www.linkedin.com/in/shriyagupta',
-  linkedinLabel: 'linkedin.com/in/shriyagupta',
+  linkedin: 'https://www.linkedin.com/in/shriyagupta-',
+  linkedinLabel: 'linkedin.com/in/shriyagupta-',
   tagline: 'I build backends that ship to production —\nand stay standing under load.',
   subtagline:
     'Backend engineer with 2 years building scalable, event-driven systems in Node.js, NestJS & AWS. I’ve shipped live payment infrastructure, real-time messaging, and queue-based pipelines that handle real money and real users.',
